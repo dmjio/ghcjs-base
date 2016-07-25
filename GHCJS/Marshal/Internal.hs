@@ -217,6 +217,7 @@ instance (GFromJSArr (a p), GFromJSArr (b p)) => GFromJSArr ((a :*: b) p) where
   gFromJSArr f r n = do
     a <- gFromJSArr f r 0
     case a of
+      Nothing -> pure Nothing
       Just (a',an) -> do
         b <- gFromJSArr f r an
         case b of
